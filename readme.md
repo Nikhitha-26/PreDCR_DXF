@@ -74,7 +74,9 @@ def generate_predcr_dxf(data: dict, output_file: str) -> None:
 Getting Started
 
 Prerequisites
-Bashpip install -r requirements.txt
+Bashpip install -r requirements.txt 
+or
+Bashpip install ezdxf 
 
 Running the Scripts
 
