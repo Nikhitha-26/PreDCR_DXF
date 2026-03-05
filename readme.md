@@ -7,22 +7,25 @@ In urban planning and architecture, building plans must follow strict Pre-Develo
 ---
 
 ## Repository Structure
-` ` ` text 
+## Repository Structure
+
+```text
 PreDCR/
-├── src/                        # Core Python Processing Scripts
-│   ├── PreDCR_comp.py          # Strict Compliance Engine
-│   └── geojson_to_dxf.py       # Flexible Translation Engine
 │
-├── data/                       # Test & Validation Payloads
-│   ├── floor.geojson           # 2-BHK floor plan with rooms/windows
-│   ├── site.geojson            # Plot boundary + road layout
-│   ├── shapes.geojson          # Geometry stress-test cases
-│   ├── output.dxf              # Sample PreDCR output
-│   └── shapes_test.dxf         # Flexible engine test output
+├── src/                         # Core Python Processing Scripts
+│   ├── PreDCR_comp.py           # Strict Compliance Engine
+│   └── geojson_to_dxf.py        # Flexible Translation Engine
 │
-├── requirements.txt            # Project dependencies
-└── README.md                   # Project Documentation
-` ` `
+├── data/                        # Test & Validation Payloads
+│   ├── floor.geojson            # 2-BHK floor plan with rooms/windows
+│   ├── site.geojson             # Plot boundary + road layout
+│   ├── shapes.geojson           # Geometry stress-test cases
+│   ├── output.dxf               # Sample PreDCR output
+│   └── shapes_test.dxf          # Flexible engine test output
+│
+├── requirements.txt             # Project dependencies
+└── README.md                    # Project documentation
+```
 
 ## Technical Implementation
 
