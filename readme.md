@@ -7,6 +7,7 @@ In urban planning and architecture, building plans must follow strict Pre-Develo
 ---
 
 ## Repository Structure
+` ` ` text 
 PreDCR/
 ├── src/                        # Core Python Processing Scripts
 │   ├── PreDCR_comp.py          # Strict Compliance Engine
@@ -21,7 +22,7 @@ PreDCR/
 │
 ├── requirements.txt            # Project dependencies
 └── README.md                   # Project Documentation
-text---
+` ` `
 
 ## Technical Implementation
 
@@ -72,26 +73,30 @@ def generate_predcr_dxf(data: dict, output_file: str) -> None:
     """
 ```
 Getting Started
+## Getting Started
 
-Prerequisites
-Bashpip install -r requirements.txt 
-or
-Bashpip install ezdxf 
+### Prerequisites
+```bash
+pip install -r requirements.txt 
+# or
+pip install ezdxf
+```
+### Running the Scripts
 
-Running the Scripts
-
-PreDCR-compliant conversion
-Bashpython src/PreDCR_comp.py data/floor.geojson data/floor.dxf
-
-Flexible/generic conversion
-Bashpython src/geojson_to_dxf.py
-
-Future Roadmap
+### PreDCR-compliant conversion
+```bash
+python src/PreDCR_comp.py data/floor.geojson data/floor.dxf
+```
+### Flexible/generic conversion
+```bash
+python src/geojson_to_dxf.py
+```
+### Future Roadmap
 
 Automated area validation against minimum habitable standards
 Web dashboard (upload GeoJSON → instant compliant DXF download)
 Automatic hatching for layers like _MarginalOpenSpace and _Road
 
 
-Conclusion
+### Conclusion
 This suite bridges the gap between modern web GIS tools and legacy municipal CAD requirements. It saves hours of manual drafting, reduces errors, and prepares spatial data for fully automated approval workflows.
