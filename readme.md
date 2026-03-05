@@ -1,4 +1,4 @@
-# PreDCR GeoJSON-to-CAD Automation Suite 🏢🗺️
+# PreDCR GeoJSON-to-CAD Automation
 
 **A Proof of Concept** that automatically converts web-based GeoJSON spatial data into **PreDCR-compliant AutoCAD DXF** drawings for municipal approval.
 
