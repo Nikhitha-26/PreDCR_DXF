@@ -95,7 +95,7 @@ python src/geojson_to_dxf.py
 ```
 ---
 
-### Future Roadmap
+## Future Roadmap
 
 Automated area validation against minimum habitable standards
 Web dashboard (upload GeoJSON → instant compliant DXF download)
