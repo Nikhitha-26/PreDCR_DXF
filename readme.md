@@ -75,7 +75,6 @@ def generate_predcr_dxf(data: dict, output_file: str) -> None:
     :param output_file: Destination DXF path (or use BytesIO for HTTP response)
     """
 ```
-Getting Started
 ## Getting Started
 
 ### Prerequisites
@@ -94,6 +93,8 @@ python src/PreDCR_comp.py data/floor.geojson data/floor.dxf
 ```bash
 python src/geojson_to_dxf.py
 ```
+---
+
 ### Future Roadmap
 
 Automated area validation against minimum habitable standards
