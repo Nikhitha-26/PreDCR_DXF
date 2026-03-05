@@ -1,0 +1,46 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Plot Boundary", "layer": "_PlotBoundary", "color": 6, "type": "plot" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [40, 0], [40, 30], [0, 30], [0, 0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Main Road", "layer": "_Road", "color": 20, "type": "road" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, -8], [40, -8], [40, 0], [0, 0], [0, -8]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Curved Driveway", "layer": "_Road", "color": 20 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[2, 0], [5, 5], [10, 8], [15, 8], [20, 5], [22, 0], [2, 0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Building", "layer": "_PropWork", "color": 5 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[25, 10], [35, 10], [35, 25], [30, 25], [30, 15], [25, 15], [25, 10]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Central Area", "layer": "_Landscape", "color": 3, "radius": 2.5 },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [15, 20]
+      }
+    }
+    
+  ]
+}

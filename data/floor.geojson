@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_PlotBoundary",
+        "layer": "_PlotBoundary",
+        "description": "20x20 Outer Property"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [ [0, 0], [20, 0], [20, 20], [0, 20], [0, 0] ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_PropWork",
+        "layer": "_PropWork",
+        "description": "Main Building Footprint"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [ [2, 2], [18, 2], [18, 18], [2, 18], [2, 2] ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_Room",
+        "layer": "_Room",
+        "description": "Living Room (Bottom Left)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [ [2, 2], [10, 2], [10, 10], [2, 10], [2, 2] ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_Room",
+        "layer": "_Room",
+        "description": "Bedroom (Bottom Right)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [ [10, 2], [18, 2], [18, 10], [10, 10], [10, 2] ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_Room",
+        "layer": "_Room",
+        "description": "Kitchen (Top Left)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [ [2, 10], [10, 10], [10, 18], [2, 18], [2, 10] ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_Room",
+        "layer": "_Room",
+        "description": "Bathroom (Top Right)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [ [10, 10], [18, 10], [18, 18], [10, 18], [10, 10] ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_Window",
+        "layer": "_Window",
+        "description": "Living Room Front Window"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [ [4, 2], [8, 2] ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_Window",
+        "layer": "_Window",
+        "description": "Bedroom Front Window"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [ [12, 2], [16, 2] ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_Window",
+        "layer": "_Window",
+        "description": "Kitchen Side Window"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [ [2, 12], [2, 16] ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "_Window",
+        "layer": "_Window",
+        "description": "Bathroom Back Window"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [ [12, 18], [16, 18] ]
+      }
+    }
+    
+  
+  ]
+}
