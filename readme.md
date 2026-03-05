@@ -1,25 +1,104 @@
-PreDCR GeoJSON-to-CAD Automation Suite 🏢🗺️1. Project OverviewA Proof of Concept (PoC) has been developed to bridge the gap between web-based spatial data (GeoJSON) and municipal building plan standards (AutoCAD DXF).In urban planning and architecture, adherence to strict PreDCR (Pre-Development Control Regulation) guidelines is required for drawings. In this project, the conversion process has been automated. Geographic features—such as plot boundaries, rooms, and roads—are ensured to be mapped to the correct CAD layers with the mandatory color codes required for automated regulatory approval.2. Repository StructureThe project has been organized into a modular architecture so that core processing logic is separated from test data payloads.PreDCR/
+# PreDCR GeoJSON-to-CAD Automation Suite 🏢🗺️
+
+**A Proof of Concept** that automatically converts web-based GeoJSON spatial data into **PreDCR-compliant AutoCAD DXF** drawings for municipal approval.
+
+In urban planning and architecture, building plans must follow strict Pre-Development Control Regulation (PreDCR) guidelines for layer names, color codes, and geometry. This suite eliminates manual redrawing by converting GeoJSON features (plot boundaries, rooms, roads, windows, etc.) directly into correctly layered, color-coded DXF files ready for automated regulatory validation.
+
+---
+
+## Repository Structure
+PreDCR/
 ├── src/                        # Core Python Processing Scripts
 │   ├── PreDCR_comp.py          # Strict Compliance Engine
-│   └── geojson_to_dxf.py       # Flexible Translation Engine
+│   ├── geojson_to_dxf.py       # Flexible Translation Engine
+│   └── dxf_to_json_auto.py     # Reverse Extraction Utility
 │
-├── data/                       # Validation & Test Payloads
+├── data/                       # Test & Validation Payloads
 │   ├── floor.geojson           # 2-BHK floor plan with rooms/windows
-│   ├── site.geojson            # Plot boundary and road data
-│   ├── shapes.geojson          # Geometric stress-test cases
-│   ├── shapes_test.dxf         # Flexible translation output
-│   └── output.dxf              # Sample generated output
+│   ├── site.geojson            # Plot boundary + road layout
+│   ├── shapes.geojson          # Geometry stress-test cases
+│   ├── output.dxf              # Sample PreDCR output
+│   └── shapes_test.dxf         # Flexible engine test output
 │
 ├── requirements.txt            # Project dependencies
 └── README.md                   # Project Documentation
-3. Technical ImplementationA. Strict Compliance Engine (PreDCR_comp.py)This tool was created for regulatory workflows. A Rule-Based Mapping System is utilized to enforce municipal standards:Mandatory Layer Routing: Feature names are automatically mapped to strict layers (e.g., _PlotBoundary, _PropWork, _Room).Standardized Coloring: AutoCAD Color Indices (ACI) are enforced. For example, Magenta (6) is assigned to boundaries, and Color 20 is assigned to roads.String Normalization: Input names are cleaned and normalized (e.g., "  ROAD " or "_road" are both resolved to the official _Road layer).B. Flexible Translation Engine (geojson_to_dxf.py)A utility script has been designed for general drafting where strict PreDCR rules are not required:Property Respect: Layer and color properties from the GeoJSON are directly read and applied if provided.Dynamic Layering: If a layer name is missing, a new layer is auto-generated based on the shape's name.4. Geometry Mapping TableGeoJSON FeatureCAD EntityPreDCR UsagePolygonLWPOLYLINE (Closed)Plots, Rooms, Building FootprintsLineStringLWPOLYLINE (Open)Roads, Windows, Compound WallsPointCIRCLETrees, Columns, Reference Points5. Technical Evaluation & LimitationsLearning Curve for ezdxfA moderate learning curve was encountered while implementing the ezdxf library. Although the Python API is well-documented, successful implementation required a deep understanding of the AutoCAD DXF specification. Differentiating between entity types (e.g., modern LWPOLYLINE vs. legacy POLYLINE) and understanding Modelspace versus Paperspace necessitated significant technical familiarization.System Limitations (Curved Boundaries)Currently, only straight-line vectors (LWPOLYLINE and LINE) and strict CIRCLE primitives are handled by the conversion engines.Curves: Because standard GeoJSON does not natively support true mathematical curves (such as CAD Arcs, Ellipses, or Splines), curved site boundaries must be approximated and exported from the web frontend as multi-segment LineStrings or Polygons. These segmented approximations will be faithfully recreated by the system, but true native CAD Arcs are not generated.Execution PerformanceExecution time has been highly optimized. The script operates in O(N) time relative to the number of geometric features. For a standard architectural layout or site plan containing 100 to 500 features, the entire conversion and file-generation process is executed in less than 0.15 seconds on a standard local workstation.6. API Integration & Backend HandoffTo facilitate integration into the upcoming FastAPI server by the core backend team, the main conversion function has been structured to accept parsed Python dictionaries (JSON) directly, thereby bypassing the need for disk-level file reading.Target Function Signature:def generate_predcr_dxf(data: dict, output_file: str) -> None:
+
+
+
+---
+
+## Technical Implementation
+
+### A. Strict Compliance Engine (`PreDCR_comp.py`)
+Designed for regulatory workflows. A rule-based system enforces municipal standards:
+
+- **Mandatory Layer Routing** – Automatically maps features to official PreDCR layers (`_PlotBoundary`, `_PropWork`, `_Room`, `_Road`, `_Window`, etc.)
+- **Standardized Coloring** – Enforces exact AutoCAD Color Index (ACI) values (e.g., Magenta 6 for boundaries, Color 20 for roads)
+- **Smart String Normalization** – `" ROAD "`, `"_road"`, `"Road"` → all resolve to `_Road`
+
+### B. Flexible Translation Engine (`geojson_to_dxf.py`)
+For general drafting where strict PreDCR rules are not required. Respects properties defined in the GeoJSON:
+
+- Reads `layer` and `color` from feature properties when available
+- Auto-creates layers + assigns colors if missing
+- Perfect for rapid prototyping and GIS-to-CAD workflows
+
+---
+
+## Geometry Mapping
+
+| GeoJSON Feature | CAD Entity              | PreDCR Usage                          |
+|-----------------|-------------------------|---------------------------------------|
+| Polygon         | LWPOLYLINE (Closed)     | Plots, Rooms, Building Footprints     |
+| LineString      | LWPOLYLINE (Open)       | Roads, Windows, Compound Walls        |
+| Point           | CIRCLE                  | Trees, Columns, Reference Points      |
+
+---
+
+## Technical Evaluation & Limitations
+
+- **ezdxf Learning Curve**: Moderate. Requires understanding LWPOLYLINE vs legacy POLYLINE, Modelspace/Paperspace, and entity attributes.
+- **Curved Boundaries**: GeoJSON only supports straight segments. Curved boundaries must be approximated as multi-segment LineStrings/Polygons (faithfully recreated, but not converted to native CAD arcs).
+- **Performance**: O(N) time. A typical 100–500 feature site plan processes in **< 0.15 seconds**.
+
+---
+
+## Backend API Integration (FastAPI Ready)
+
+The core function accepts a Python dictionary directly — perfect for FastAPI:
+
+```python
+def generate_predcr_dxf(data: dict, output_file: str) -> None:
     """
     Generates a PreDCR-compliant DXF file from a GeoJSON dictionary.
     
-    :param data: The parsed GeoJSON FeatureCollection (as a Python dictionary).
-    :param output_file: The destination file path where the DXF blob will be saved.
+    :param data: Parsed GeoJSON FeatureCollection (Python dict)
+    :param output_file: Destination DXF path (or use BytesIO for HTTP response)
     """
-Note: In a FastAPI environment, data will be the injected Pydantic model (dict), and output_file can be modified to write to a BytesIO stream for direct HTTP file responses.7. Getting StartedPrerequisitesIt must be ensured that Python 3.x is installed along with the dependencies listed in requirements.txt:pip install -r requirements.txt
-(Or manually install the main requirement: pip install ezdxf)Running the ConversionTo generate a PreDCR-compliant DXF from a GeoJSON layout, the following command is executed:python src/PreDCR_comp.py data/floor.geojson data/floor.dxf
-To run the flexible/generic conversion script:python src/geojson_to_dxf.py
-8. Future RoadmapArea Validation: Scripts are planned to be integrated so that room areas can be calculated and verified against minimum habitable standards.Web Interface: A browser-based dashboard is proposed to be built so that GeoJSON files can be uploaded and compliant DXF files can be instantly downloaded.Automatic Hatching: Standard CAD hatches are intended to be added to specific layers, such as _MarginalOpenSpace.
+
+
+Getting Started
+
+Prerequisites
+pip install -r requirements.txt
+
+
+Running the Scripts
+
+PreDCR-compliant conversion
+python src/PreDCR_comp.py data/floor.geojson data/floor.dxf
+
+Flexible/generic conversion
+python src/geojson_to_dxf.py
+
+
+Future Roadmap
+
+Automated area validation against minimum habitable standards
+Web dashboard (upload GeoJSON → instant compliant DXF download)
+Automatic hatching for layers like _MarginalOpenSpace and _Road
+(Optional) DXF → GeoJSON reverse conversion utility
+
+
+Conclusion
+This suite bridges the gap between modern web GIS tools and legacy municipal CAD requirements. It saves hours of manual drafting, reduces errors, and prepares spatial data for fully automated approval workflows.
