@@ -10,8 +10,7 @@ In urban planning and architecture, building plans must follow strict Pre-Develo
 PreDCR/
 ├── src/                        # Core Python Processing Scripts
 │   ├── PreDCR_comp.py          # Strict Compliance Engine
-│   ├── geojson_to_dxf.py       # Flexible Translation Engine
-│   └── dxf_to_json_auto.py     # Reverse Extraction Utility
+│   └── geojson_to_dxf.py       # Flexible Translation Engine
 │
 ├── data/                       # Test & Validation Payloads
 │   ├── floor.geojson           # 2-BHK floor plan with rooms/windows
@@ -22,10 +21,7 @@ PreDCR/
 │
 ├── requirements.txt            # Project dependencies
 └── README.md                   # Project Documentation
-
-
-
----
+text---
 
 ## Technical Implementation
 
@@ -59,7 +55,6 @@ For general drafting where strict PreDCR rules are not required. Respects proper
 
 - **ezdxf Learning Curve**: Moderate. Requires understanding LWPOLYLINE vs legacy POLYLINE, Modelspace/Paperspace, and entity attributes.
 - **Curved Boundaries**: GeoJSON only supports straight segments. Curved boundaries must be approximated as multi-segment LineStrings/Polygons (faithfully recreated, but not converted to native CAD arcs).
-- **Performance**: O(N) time. A typical 100–500 feature site plan processes in **< 0.15 seconds**.
 
 ---
 
@@ -76,28 +71,24 @@ def generate_predcr_dxf(data: dict, output_file: str) -> None:
     :param output_file: Destination DXF path (or use BytesIO for HTTP response)
     """
 
-
 Getting Started
 
 Prerequisites
-pip install -r requirements.txt
-
+Bashpip install -r requirements.txt
 
 Running the Scripts
 
 PreDCR-compliant conversion
-python src/PreDCR_comp.py data/floor.geojson data/floor.dxf
+Bashpython src/PreDCR_comp.py data/floor.geojson data/floor.dxf
 
 Flexible/generic conversion
-python src/geojson_to_dxf.py
-
+Bashpython src/geojson_to_dxf.py
 
 Future Roadmap
 
 Automated area validation against minimum habitable standards
 Web dashboard (upload GeoJSON → instant compliant DXF download)
 Automatic hatching for layers like _MarginalOpenSpace and _Road
-(Optional) DXF → GeoJSON reverse conversion utility
 
 
 Conclusion
