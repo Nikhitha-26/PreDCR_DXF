@@ -70,7 +70,7 @@ def generate_predcr_dxf(data: dict, output_file: str) -> None:
     :param data: Parsed GeoJSON FeatureCollection (Python dict)
     :param output_file: Destination DXF path (or use BytesIO for HTTP response)
     """
-
+```
 Getting Started
 
 Prerequisites
