@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "_comment": "Edge case fixture. Each feature tests a specific boundary/error condition.",
+  "features": [
+    {
+      "_comment": "EDGE-1: null geometry — should be silently skipped, no crash.",
+      "type": "Feature",
+      "properties": { "name": "_PlotBoundary" },
+      "geometry": null
+    },
+    {
+      "_comment": "EDGE-2: null properties — surfaces AttributeError bug (xfail test TC-I09).",
+      "type": "Feature",
+      "properties": null,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [ [ [0,0], [5,0], [5,5], [0,5], [0,0] ] ]
+      }
+    },
+    {
+      "_comment": "EDGE-3: 'layer' key present but no 'name' key — layer fallback must work.",
+      "type": "Feature",
+      "properties": { "layer": "_Window" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [ [2,0], [6,0] ]
+      }
+    },
+    {
+      "_comment": "EDGE-4: Both 'name' and 'layer' set to conflicting values — name must win.",
+      "type": "Feature",
+      "properties": { "name": "_Road", "layer": "_PlotBoundary" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [ [ [0,-8], [20,-8], [20,0], [0,0], [0,-8] ] ]
+      }
+    },
+    {
+      "_comment": "EDGE-5: Unclosed polygon ring — first vertex != last vertex — should print warning.",
+      "type": "Feature",
+      "properties": { "name": "_PropWork" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [ [ [10,10], [20,10], [20,20], [10,20] ] ]
+      }
+    },
+    {
+      "_comment": "EDGE-6: 3D coordinates [lon, lat, elevation] — Z must be silently dropped.",
+      "type": "Feature",
+      "properties": { "name": "_PlotBoundary" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [72.87, 19.07, 14.0],
+            [72.88, 19.07, 14.5],
+            [72.88, 19.08, 15.0],
+            [72.87, 19.08, 14.8],
+            [72.87, 19.07, 14.0]
+          ]
+        ]
+      }
+    },
+    {
+      "_comment": "EDGE-7: Polygon with interior ring (donut hole) — only outer ring drawn.",
+      "type": "Feature",
+      "properties": { "name": "_PropWork" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [ [0,0], [20,0], [20,20], [0,20], [0,0] ],
+          [ [5,5], [15,5], [15,15], [5,15], [5,5] ]
+        ]
+      }
+    }
+  ]
+}

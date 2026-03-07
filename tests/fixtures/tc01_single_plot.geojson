@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "_PlotBoundary" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [ [0, 0], [15, 0], [15, 10], [0, 10], [0, 0] ]
+        ]
+      }
+    }
+  ]
+}

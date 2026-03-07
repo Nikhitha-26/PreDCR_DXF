@@ -1,0 +1,70 @@
+{
+  "type": "FeatureCollection",
+  "_comment": "Synthetic residential plot near Bandra, Mumbai. Coordinates in WGS84 (EPSG:4326). Approx 30m x 20m dimensions.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "_PlotBoundary", "site": "Mumbai Residential Plot" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [72.8700, 19.0700],
+            [72.8702, 19.0700],
+            [72.8702, 19.0703],
+            [72.8700, 19.0703],
+            [72.8700, 19.0700]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "_PropWork", "description": "Proposed Ground Floor Footprint" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [72.87002, 19.07003],
+            [72.87018, 19.07003],
+            [72.87018, 19.07027],
+            [72.87002, 19.07027],
+            [72.87002, 19.07003]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "_Road", "description": "Linking Road" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [72.8699, 19.0698],
+            [72.8703, 19.0698],
+            [72.8703, 19.0700],
+            [72.8699, 19.0700],
+            [72.8699, 19.0698]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "_MarginalOpenSpace", "description": "Front Setback 1.5m" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [72.8700, 19.0700],
+            [72.8702, 19.0700],
+            [72.8702, 19.07003],
+            [72.8700, 19.07003],
+            [72.8700, 19.0700]
+          ]
+        ]
+      }
+    }
+  ]
+}

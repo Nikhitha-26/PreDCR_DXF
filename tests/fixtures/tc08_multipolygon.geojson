@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "_PlotBoundary", "description": "Valid baseline — ensures file parses correctly" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [ [ [0,0], [30,0], [30,20], [0,20], [0,0] ] ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "_Road", "description": "MultiPolygon — two disconnected road segments" },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [ [ [0,-8], [15,-8], [15,0], [0,0], [0,-8] ] ],
+          [ [ [20,-8], [30,-8], [30,0], [20,0], [20,-8] ] ]
+        ]
+      }
+    }
+  ]
+}

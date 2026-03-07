@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Virtual environment (lives in parent dir, but just in case)
+readev/
+
+# Generated DXF outputs (inputs checked in; outputs are artifacts)
+data/output.dxf
+data/shapes_test.dxf
+data/floor_output.dxf

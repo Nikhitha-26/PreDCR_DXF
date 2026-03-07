@@ -1,19 +1,21 @@
 import math
+import pathlib
 import ezdxf
 
-OUTPUT_FILE = "..\\data\shapes_test.dxf"
+DEFAULT_OUTPUT_FILE = pathlib.Path(__file__).parent.parent / "data" / "shapes_test.dxf"
+
 
 def add_shapes(doc):
     msp = doc.modelspace()
 
     layers = {
-        "_Circle":    1,     
-        "_Square":    30,    
-        "_Triangle":  140,   
-        "_Pentagon":  4,     
-        "_Hexagon":   3,     
-        "_Rectangle": 5,     
-        "_Line":      8,     
+        "_Circle":    1,
+        "_Square":    30,
+        "_Triangle":  140,
+        "_Pentagon":  4,
+        "_Hexagon":   3,
+        "_Rectangle": 5,
+        "_Line":      8,
     }
 
     for name, color in layers.items():
@@ -32,14 +34,22 @@ def add_shapes(doc):
 
     hex_points = []
     cx, cy, r = 7.0, 0.0, 0.6
-    for i in range(6): 
+    for i in range(6):
         a = i * 60 * math.pi / 180
         hex_points.append((cx + r * math.cos(a), cy + r * math.sin(a)))
     msp.add_lwpolyline(hex_points, close=True, dxfattribs={'layer': '_Hexagon'})
 
     print("Added shapes")
 
-doc = ezdxf.new("R2010")
-add_shapes(doc)
-doc.saveas(OUTPUT_FILE)
-print(f"Saved to {OUTPUT_FILE}")
+
+def main(output_file=None):
+    if output_file is None:
+        output_file = DEFAULT_OUTPUT_FILE
+    doc = ezdxf.new("R2010")
+    add_shapes(doc)
+    doc.saveas(str(output_file))
+    print(f"Saved to {output_file}")
+
+
+if __name__ == "__main__":
+    main()

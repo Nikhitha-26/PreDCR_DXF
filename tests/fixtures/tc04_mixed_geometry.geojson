@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "_Road" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [ [ [0,-8], [40,-8], [40,0], [0,0], [0,-8] ] ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "_Window" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [ [4,2], [8,2] ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "_Landscape" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [15, 20]
+      }
+    }
+  ]
+}
